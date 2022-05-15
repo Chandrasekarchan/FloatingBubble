@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "74079629178",
+    "project_id": "biometric-7e1c8",
+    "storage_bucket": "biometric-7e1c8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:74079629178:android:a5f136dee98461426eb0c3",
+        "android_client_info": {
+          "package_name": "com.example.floatingbubble"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "74079629178-cl8cjivctes33tibmt4blhmb2jbur2u1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.floatingbubble",
+            "certificate_hash": "429bfd017d28b63ed6db8448f3ab9174a8f92a4f"
+          }
+        },
+        {
+          "client_id": "74079629178-2qan76661pui1b61d5q4nekk1undftn8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyATY0_qz1l05OgXAFnu8NzgFmL_7Edn_6A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "74079629178-2qan76661pui1b61d5q4nekk1undftn8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">FloatingBubble</string>
+    <string name="hellow_world">Hellow world</string>
+    <string name="start">Start</string>
+    <string name="stop">Stop</string>
 </resources>

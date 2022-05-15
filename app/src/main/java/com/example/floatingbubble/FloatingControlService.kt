@@ -9,6 +9,7 @@ import android.graphics.PixelFormat
 import android.os.Build
 import android.os.Handler
 import android.os.IBinder
+import android.text.format.DateUtils
 import android.util.DisplayMetrics
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -16,6 +17,12 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.core.app.NotificationCompat
 import com.example.floatingbubble.MainActivity.Companion.ACTION_STOP_FOREGROUND
+import com.google.firebase.database.FirebaseDatabase
+import java.util.*
+import java.util.concurrent.Executors
+import java.util.concurrent.ScheduledExecutorService
+import java.util.concurrent.TimeUnit
+
 
 class FloatingControlService:Service() {
     private var windowManager: WindowManager? = null
@@ -26,6 +33,7 @@ class FloatingControlService:Service() {
     private var screenWidth = 0
     private var hideHandler: Handler? = null
     private var hideRunnable: Runnable? = null
+    private val excecuter:ScheduledExecutorService =Executors.newSingleThreadScheduledExecutor()
     override fun onBind(intent: Intent?): IBinder? {
         return null
     }
@@ -46,6 +54,11 @@ class FloatingControlService:Service() {
         }else {
             generateForegroundNotification()
             addFloatingMenu()
+
+            excecuter.scheduleAtFixedRate({
+                updateToFirebase()
+            },2,5,TimeUnit.SECONDS)
+
         }
         return START_STICKY
 
@@ -146,5 +159,19 @@ class FloatingControlService:Service() {
     private fun dpToPx(dp: Int): Int {
         val displayMetrics = this.resources.displayMetrics
         return Math.round(dp * (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT))
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        excecuter.shutdownNow()
+        stopForeground(false)
+        stopSelf()
+    }
+
+    fun updateToFirebase(){
+        val database = FirebaseDatabase.getInstance()
+        val myRef = database.getReference("message")
+        val currentTimeInMills =   System.currentTimeMillis()
+        myRef.setValue(currentTimeInMills)
     }
 }
